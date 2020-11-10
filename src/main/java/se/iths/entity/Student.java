@@ -1,15 +1,25 @@
 package se.iths.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Student {
 
-
+    @Id
+    @GeneratedValue
     private Long id;
-
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String lastname;
+    @NotEmpty
     private String email;
+
     private String phoneNumber;
+
 
     public Long getId() {
         return id;
