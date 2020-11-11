@@ -49,6 +49,7 @@ public class StudentRest {
             throw new StudentNotFoundException("Student with ID " + id + " not found");
 
     }
+
     @Path("name/{lastname}")
     @GET
     public Response getStudent(@PathParam("lastname") String lastName) {
@@ -76,6 +77,18 @@ public class StudentRest {
                     .noContent()
                     .build();
 
+    }
+
+    @Path("update")
+    @PUT
+    public Response updateStudent(Student student) {
+        var updatedStudent = studentService.updateStudent(student);
+        if (updatedStudent != null)
+            return Response
+                    .ok(updatedStudent)
+                    .build();
+        else
+            throw new StudentNotFoundException("Student with not found");
     }
 
 
