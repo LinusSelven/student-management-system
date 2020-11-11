@@ -2,6 +2,7 @@ package se.iths.rest;
 
 
 import se.iths.entity.Student;
+import se.iths.rest.exceptions.StudentNotFoundException;
 import se.iths.service.StudentService;
 
 import javax.inject.Inject;
@@ -29,7 +30,10 @@ public class StudentRest {
     @Path("all")
     @GET
     public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+        List<Student> students = studentService.getAllStudents();
+        if (students.isEmpty())
+            throw new StudentNotFoundException("No students were found");
+        return students;
     }
 
 
@@ -42,11 +46,19 @@ public class StudentRest {
                     .ok(foundStudent)
                     .build();
         else
+            throw new StudentNotFoundException("Student with ID " + id + " not found");
+
+    }
+    @Path("name/{lastname}")
+    @GET
+    public Response getStudent(@PathParam("lastname") String lastName) {
+        var foundStudent = studentService.findStudentByLastName(lastName);
+        if (!foundStudent.isEmpty())
             return Response
-                    .status(Response.Status.NOT_FOUND)
-                    .entity("Student with ID " + id + " not found.")
-                    .type(MediaType.TEXT_PLAIN_TYPE)
+                    .ok(foundStudent)
                     .build();
+        else
+            throw new StudentNotFoundException("Student with lastname " + lastName + " not found");
     }
 
     @Path("{id}")

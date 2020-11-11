@@ -18,7 +18,7 @@ public class StudentService {
         return student;
     }
 
-    public Student updateTodo(Student student) {
+    public Student updateStudent(Student student) {
         entityManager.merge(student);
         return student;
     }
@@ -27,10 +27,15 @@ public class StudentService {
         return entityManager.find(Student.class, id);
     }
 
+    public List<Student> findStudentByLastName(String lastName) {
+        var query = entityManager
+                .createQuery("SELECT s from Student s WHERE s.lastname = :lastname", Student.class);
+        return query.setParameter("lastname", lastName).getResultList();
+    }
+
     public List<Student> getAllStudents() {
         return entityManager.createQuery("SELECT s from Student s", Student.class).getResultList();
     }
-
 
     public boolean deleteStudent(Long id) {
         Student studentToBeDeleted = findStudentById(id);
