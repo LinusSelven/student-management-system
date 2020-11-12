@@ -17,7 +17,7 @@ Example: ```{
 	"phoneNumber": "123123123"
 }```
 
-Description: Creates a new user and stores it in the database. The phone number is optional but every other field is required.
+Description: Creates a new user and stores it in the database. The phone number is **optional** but every other field is required.
 #### GET (User by ID)
 ``` md
 localhost:8080/se.iths/api/v1/student/1
