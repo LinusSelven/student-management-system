@@ -82,14 +82,17 @@ public class StudentRest {
     @Path("update")
     @PUT
     public Response updateStudent(Student student) {
-        var updatedStudent = studentService.updateStudent(student);
-        if (updatedStudent != null)
-            return Response
-                    .ok(updatedStudent)
-                    .build();
-        else
-            throw new StudentNotFoundException("Student with not found");
-    }
+        if (
+                student.getFirstName() == null ||
+                        student.getLastname() == null ||
+                        student.getEmail() == null ||
+                        student.getId() == null) {
 
+            throw new StudentNotFoundException("Data is incomplete!");
+        } else {
+            var updatedStudent = studentService.updateStudent(student);
+            return Response.ok(updatedStudent).build();
+        }
+    }
 
 }
