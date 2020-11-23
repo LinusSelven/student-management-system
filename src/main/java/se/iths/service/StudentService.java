@@ -1,5 +1,6 @@
 package se.iths.service;
 
+import se.iths.entity.Subject;
 import se.iths.entity.Student;
 
 import java.util.List;

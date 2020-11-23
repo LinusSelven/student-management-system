@@ -50,7 +50,7 @@ public class StudentRest {
 
     }
 
-    @Path("name/{lastname}")
+    @Path("lastname/{lastname}")
     @GET
     public Response getStudent(@PathParam("lastname") String lastName) {
         var foundStudent = studentService.findStudentByLastName(lastName);
@@ -59,7 +59,7 @@ public class StudentRest {
                     .ok(foundStudent)
                     .build();
         else
-            throw new StudentNotFoundException("Student with lastname " + lastName + " not found");
+            throw new StudentNotFoundException("No student(s) with lastname " + lastName + " found");
     }
 
     @Path("{id}")
