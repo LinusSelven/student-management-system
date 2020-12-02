@@ -59,7 +59,7 @@ Description: Replace the fields of the user found by the input parameters.
 
 #### DELETE (User by ID)
 ``` md
-localhost:8080/se.iths/api/v1/student/delete/1
+localhost:8080/se.iths/api/v1/student/1
 ```
 Example: ```Student with ID 1 was deleted```
 
