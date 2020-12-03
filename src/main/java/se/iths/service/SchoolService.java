@@ -16,7 +16,7 @@ public class SchoolService {
 
 
     public List<Student> getStudentsAndTheirSubjectsByLastName(String name) {
-        List<Student> hej = entityManager.createQuery("SELECT st.firstName, st.lastname, su.name FROM Subject su inner join Student st WHERE st.lastname  = \'" + name + "\'", Student.class).getResultList();
-        return hej;
+        List<Student> students = entityManager.createQuery("SELECT st.firstName, st.lastname, su.name FROM Subject su inner join Student st WHERE st.lastname  = \'" + name + "\'", Student.class).getResultList();
+        return students;
     }
 }
