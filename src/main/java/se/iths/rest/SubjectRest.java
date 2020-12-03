@@ -18,12 +18,6 @@ public class SubjectRest {
     @Inject
     SubjectService subjectService;
 
-    @Path("add")
-    @POST
-    public Response createSubject(Subject subject) {
-        subjectService.createSubject(subject);
-        return Response.ok(subject).build();
-    }
 
     @Path("all")
     @GET
